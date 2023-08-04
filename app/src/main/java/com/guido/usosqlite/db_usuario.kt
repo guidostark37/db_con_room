@@ -20,9 +20,9 @@ abstract class db_usuario : RoomDatabase() {
             if (INSTANCE != null) {
                 return INSTANCE!!
             }
-            val room =
-                Room.databaseBuilder(context.applicationContext, db_usuario::class.java, "usuario")
-                    .build()
+
+            INSTANCE=Room.databaseBuilder(context.applicationContext, db_usuario::class.java, "usuario")
+                .build()
             return INSTANCE!!
         }
     }
