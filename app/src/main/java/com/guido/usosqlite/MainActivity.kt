@@ -19,11 +19,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         db = db_usuario.getDATABASE(this)
-        var name = binding.txtnombre.text.toString()
-        var addres = binding.txtapellido.text.toString()
-        var age:Int = binding.txtedad.text.toString().toInt()
 
         binding.button.setOnClickListener {
+            var name = binding.txtnombre.text.toString()
+            var addres = binding.txtapellido.text.toString()
+            var age:Int = binding.txtedad.text.toString().toInt()
             CoroutineScope(Dispatchers.IO).launch {
 
                 try {
