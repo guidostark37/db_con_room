@@ -1,9 +1,10 @@
 package com.guido.usosqlite
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.lifecycle.lifecycleScope
+import android.widget.Toast
 import com.guido.usosqlite.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +21,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         db = db_usuario.getDATABASE(this)
 
+
         binding.button.setOnClickListener {
+
             var name = binding.txtnombre.text.toString()
             var addres = binding.txtapellido.text.toString()
             var age:Int = binding.txtedad.text.toString().toInt()
@@ -28,11 +31,16 @@ class MainActivity : AppCompatActivity() {
 
                 try {
                     db.usuarioDao().insertar(UsuarioEntity(0, name, addres, age))
-                    Log.e("kgao", "Guardao")
+
+                    runOnUiThread { Toast.makeText(this@MainActivity,"se guardo correctamente"
+                        , Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this@MainActivity,mostrar_datos::class.java))}
+
                 } catch (e: Exception) {
                     Log.e("kgao", e.message.toString())
                 }
             }
+
         }
 
     }
